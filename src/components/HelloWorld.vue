@@ -1,15 +1,11 @@
 <template>
  <div>
-
-  
-<router-link :to="{path:'/playVideo'}"> to playVideo</router-link>
-
+  sss
 
   </div>
 </template>
 
 <script>
-import { allSeriesStory } from '../api/index.js'
 
 export default {
   name: 'HelloWorld',
@@ -19,14 +15,9 @@ export default {
     }
   },
    created(){
-    this.getAll()
   },
    methods: {
-   getAll(){
-       allSeriesStory().then(res=>{
-       console.log(res)
-       })
-    },
+  
     },
     mounted(){
   
