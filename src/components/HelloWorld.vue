@@ -1,7 +1,7 @@
 <template>
  <div>
-  sss
-
+  HelloWorld
+  成功自动化部署
   </div>
 </template>
 
