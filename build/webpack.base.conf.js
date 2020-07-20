@@ -79,9 +79,5 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty'
   },
-  externals: {
 
-  'AMap': 'window.AMap'
-
-  },
 }

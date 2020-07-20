@@ -1,7 +1,7 @@
 <template>
  <div>
-  HelloWorld
-  成功自动化部署
+   <div class="map" id="i-map" ref="map"></div>
+  <a href="">aa</a>
   </div>
 </template>
 
@@ -19,27 +19,32 @@ export default {
    methods: {
   
     },
-    mounted(){
-  
-
-    }
+    mounted() {
+    this.map = new AMap.Map('i-map');//加载地图
+//  let mainPointArr = item.routes;//关键点的数组，其中包括起点和终点，也有可能包含途径点。
+ let mainPointArr=[[113.434576,22.54775],[115.656561,22.940998]]
+let that = this;
+let waysLngLatObj = [];
+this.map.plugin('AMap.Driving', function () {
+  var driving = new AMap.Driving({
+    map: that.map,
+    policy: AMap.DrivingPolicy.LEAST_TIME,//这是规划策略，类似导航的时间最短、距离最短、不走高速等，具体看官网
+    showTraffic: false,
+    polyOptions: {strokeColor: "#00AA00"}
+  });
+  for(var i=1; i<mainPointArr.length - 1; i++) {//找到关键点
+    waysLngLatObj.push([mainPointArr[i][0], mainPointArr[i][1]]);
+  }
+  driving.search(mainPointArr[0], mainPointArr[mainPointArr.length - 1], {waypoints: waysLngLatObj})
+});
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.map{
+  width:100%;
+  height: 500px;
 }
 </style>
